@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      max-width: 850px;
+      width: 100%;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #222;
+      font-size: 22px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    h3 {
+      margin: 25px 0 15px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    /* Grid for inputs with spacing */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px; /* space between input fields */
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fdfdfd;
+      margin-top: 4px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #0091ff;
+      box-shadow: 0 0 4px rgba(0,145,255,0.4);
+    }
+    input{
+        gap : 20px;
+    }
+    .map-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #0091ff;
+      color: #0091ff;
+      background: #eaf6ff;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+      margin-top: 28px; /* aligns map button with inputs */
+    }
+
+    .map-btn:hover {
+      background: #d1ebff;
+    }
+
+    .actions {
+      margin-top: 30px;
+      text-align: right;
+    }
+
+    .btn-primary {
+      background: #0091ff;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background: #0077cc;
+    }
+
+    iframe {
+      margin-top: 25px;
+      border: 0;
+      width: 100%;
+      height: 300px;
+      display: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>User Profile</h2>
+
+    <!-- General Information -->
+    <h3>General Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="Enter First Name">
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" id="lname" placeholder="Enter Last Name">
+      </div>
+      <div>
+        <label>Date of Birth</label>
+        <input type="date" id="dob">
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <h3>Contact Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>Type</label>
+        <select>
+          <option>Mobile</option>
+          <option>Home</option>
+          <option>Work</option>
+        </select>
+      </div>
+      <div>
+        <label>Mobile</label>
+        <input type="text" id="mobile" placeholder="Enter Mobile No">
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter Email">
+      </div>
+    </div>
+
+    <!-- Location Information -->
+    <h3>Location Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>Street</label>
+        <input type="text" id="street" placeholder="Enter Street">
+      </div>
+      <div>
+        <label>City</label>
+        <input type="text" id="city" placeholder="Enter City">
+      </div>
+      <div>
+        <label>State</label>
+        <input type="text" id="state" placeholder="Enter State">
+      </div>
+      <div>
+        <label>Zip Code</label>
+        <input type="text" id="zip" placeholder="Enter Zip Code">
+      </div>
+      <div>
+        <div class="map-btn" onclick="showMap()">📍 Map</div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="actions">
+      <button class="btn-primary">Save</button>
+    </div>
+
+    <!-- Map -->
+    <iframe id="mapFrame"></iframe>
+  </div>
+
+  <script>
+    function showMap() {
+      let street = document.getElementById("street").value;
+      let city = document.getElementById("city").value;
+      let state = document.getElementById("state").value;
+      let zip = document.getElementById("zip").value;
+
+      let fullAddress = `${street}, ${city}, ${state}, ${zip}`;
+      let mapFrame = document.getElementById("mapFrame");
+
+      if (street || city || state || zip) {
+        mapFrame.style.display = "block";
+        mapFrame.src = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
+      } else {
+        alert("⚠️ Please enter at least one location field.");
+      }
+    }
+  </script>
+
+</body>
+</html>

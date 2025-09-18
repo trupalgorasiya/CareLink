@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physician Registration</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <style>
+    body {
+      font-family: "initial";
+      background: linear-gradient(135deg, #ffccd2, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      max-width: 950px;
+      width: 100%;
+      margin: 50px auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #222;
+      font-size: 22px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    h3 {
+      margin: 25px 0 15px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      width: 85%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fdfdfd;
+      margin-top: 4px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #ff8790;
+      box-shadow: 0 0 4px rgba(255,141,152,1);
+    }
+
+    .btn-primary {
+      background: #0091ff;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background: #0077cc;
+    }
+    .map-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ff8790;
+      color: #ff8790;
+      background: #ffdce1;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+      margin-top: 28px;
+    }
+
+    .map-btn:hover {
+      background: #ff8790;
+      color: white;
+    }
+
+    iframe {
+      margin-top: 25px;
+      border: 0;
+      width: 100%;
+      height: 300px;
+      display: none;
+      border-radius: 8px;
+    }
+
+    .extra-links {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .link-btn {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 10px 22px;
+      background: #ff8790;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .link-btn:hover {
+      background: #ff5e6d;
+    }
+
+    .login-link {
+      color: #ff5e6d;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .login-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+{% include 'base/header.html' %}
+  <div class="container">
+    <h2>Physician Registration</h2>
+
+    <!-- General Information -->
+    <h3>General Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="Enter First Name">
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" id="lname" placeholder="Enter Last Name">
+      </div>
+      <div>
+        <label>Date of Birth</label>
+        <input type="date" id="dob">
+      </div>
+      <div>
+        <label>Gender</label>
+        <select id="gender">
+          <option value="">Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div>
+        <label>Medical License Number</label>
+        <input type="text" id="license" placeholder="Enter License No">
+      </div>
+    </div>
+
+    <!-- Professional Information -->
+    <h3>Professional Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>Specialty</label>
+        <input type="text" id="specialty" placeholder="e.g. Cardiologist">
+      </div>
+      <div>
+        <label>Years of Experience</label>
+        <input type="number" id="experience" min="0">
+      </div>
+      <div>
+        <label>Qualification / Degree</label>
+        <input type="text" id="qualification" placeholder="e.g. MBBS, MD">
+      </div>
+      <div>
+        <label>Hospital / Clinic Name</label>
+        <input type="text" id="hospital" placeholder="Enter Hospital / Clinic">
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <h3>Contact Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" placeholder="Enter Mobile No">
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter Email">
+      </div>
+    </div>
+
+    <!-- Location Information -->
+    <h3>Location Information</h3>
+    <div class="form-grid">
+      <div>
+        <label>Street</label>
+        <input type="text" id="street" placeholder="Enter Street">
+      </div>
+      <div>
+        <label>City</label>
+        <input type="text" id="city" placeholder="Enter City">
+      </div>
+      <div>
+        <label>State</label>
+        <input type="text" id="state" placeholder="Enter State">
+      </div>
+      <div>
+        <label>Zip Code</label>
+        <input type="text" id="zip" placeholder="Enter Zip Code">
+      </div>
+      <div>
+        <div class="map-btn" onclick="showMap()">📍 Map</div>
+      </div>
+    </div>
+<!-- Security Information -->
+    <h3>Account Security</h3>
+    <div class="form-grid">
+      <div>
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter Password">
+      </div>
+      <div>
+        <label>Confirm Password</label>
+        <input type="password" id="confirm_password" placeholder="Confirm Password">
+      </div>
+    </div>
+
+    <!-- Map -->
+    <iframe id="mapFrame"></iframe>
+
+    <!-- Submit + Login Link -->
+    <div class="extra-links">
+      <a href="#" class="link-btn">Register Physician</a>
+      <p>
+        Already have an account? 
+        <a href="{% url 'physician_login' %}" class="login-link">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function showMap() {
+      let street = document.getElementById("street").value;
+      let city = document.getElementById("city").value;
+      let state = document.getElementById("state").value;
+      let zip = document.getElementById("zip").value;
+
+      let fullAddress = `${street}, ${city}, ${state}, ${zip}`;
+      let mapFrame = document.getElementById("mapFrame");
+
+      if (street || city || state || zip) {
+        mapFrame.style.display = "block";
+        mapFrame.src = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
+      } else {
+        alert("⚠️ Please enter at least one location field.");
+      }
+    }
+  </script>
+{% include 'base/footer.html' %}
+</body>
+</html>

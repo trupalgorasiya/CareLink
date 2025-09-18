@@ -26,4 +26,7 @@ urlpatterns = [
     path('patient_login', views.patient_login, name='patient_login'),
     path('physician_login', views.physician_login, name='physician_login'),
     path('forgotpass', views.forgotpass, name='forgotpass'),
+    path('patient_registration', views.patient_registration, name='patient_registration'),
+    path('phys_registration', views.phys_registration, name='phys_registration'),
+    path('admin_registration', views.admin_registration, name='admin_registration'),
 ]

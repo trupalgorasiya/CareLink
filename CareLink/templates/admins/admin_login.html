@@ -10,7 +10,7 @@
     body {
       margin: 0;
       font-family: "initial";
-       background: linear-gradient(135deg, #ffccd2, #ffffff);
+      background: linear-gradient(135deg, #ffccd2, #ffffff);
       color: #222;
       display: flex;
       flex-direction: column; /* stack header, content, footer */
@@ -134,13 +134,13 @@
   </style>
 </head>
 <body>
-  {% include 'header.html' %}
+  {% include 'base/header.html' %}
 
   <main>
     <div class="login-container">
       <!-- Left Side Image -->
       <div class="login-image">
-        <img src="{% static 'images/patient_login.jpg' %}" alt="CareLink Login Image">
+        <img src="{% static 'images/admin_login-Photoroom.png' %}" alt="CareLink Login Image">
       </div>
 
       <!-- Divider -->
@@ -148,7 +148,7 @@
 
       <!-- Right Side Form -->
       <div class="login-form">
-        <h2>Welcome Patients</h2>
+        <h2>Welcome Admin</h2>
         <form method="post">
           {% csrf_token %}
           <div class="form-group">
@@ -162,13 +162,13 @@
           <button type="submit" class="login-btn">Login</button>
         </form>
         <div class="extra-links">
-          <p>Don’t have an account? <a href="#">Register</a></p>
+          <p>Don’t have an account? <a href="admin_registration">Register</a></p>
           <p><a href="#">Forgot Password?</a></p>
         </div>
       </div>
     </div>
   </main>
 
-  {% include 'footer.html' %}
+  {% include 'base/footer.html' %}
 </body>
 </html>
